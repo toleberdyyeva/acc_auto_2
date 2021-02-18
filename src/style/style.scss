@@ -1,0 +1,89 @@
+body {
+  background-color: $app-bg;
+}
+
+* {
+  outline: none;
+  color: $app-text-normal;
+}
+
+a {
+  color: $app-primary;
+  &:hover {
+    color: white;
+  }
+}
+p {
+  margin-bottom: 0px;
+}
+
+//-------------------------------------- TYPO
+.text-fade {
+  color: rgba(white, 0.6);
+}
+
+//-------------------------------------- OVERRIDE
+.card {
+  background: none;
+  .card-header {
+    padding-bottom: 0px;
+  }
+  .card-body,
+  .acc_accordion_card {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+  .acc_accordion_card {
+    cursor: pointer;
+    img {
+      transition: 0.5s;
+      filter: grayscale(200%);
+    }
+    p {
+      font-size: 1.4rem;
+      font-weight: 600;
+      transition: 0.5s;
+      color: $app-text-fade;
+    }
+    &:hover {
+      p {
+        color: $app-text-normal;
+      }
+      img {
+        filter: grayscale(50%);
+      }
+    }
+    &.active {
+      p {
+        color: $app-primary;
+      }
+      img {
+        filter: grayscale(0%);
+      }
+    }
+  }
+}
+
+.form-control {
+  background: none;
+  border: 1px solid rgba(white, 0.1);
+  outline: none;
+  transition: 0.3s;
+  &:hover {
+    border: 1px solid rgba(white, 0.6);
+  }
+  &:focus {
+    background: none;
+    box-shadow: 0px 0px 0px 5px rgba($app-primary, 0.1);
+    border: 1px solid rgba($app-primary, 0.6);
+  }
+  &:-webkit-autofill {
+    background-color: #d5e500 !important;
+  }
+}
+//-------------------------------------- GLOBAL
+.image-wrapper {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transition: 0.5s;
+}

@@ -1,0 +1,9 @@
+/* import the necessary Bootstrap files */
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+$theme-colors: (
+  primary: $app-primary,
+);
+
+@import "~bootstrap/scss/bootstrap";

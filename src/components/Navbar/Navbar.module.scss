@@ -1,0 +1,39 @@
+.navbar {
+  padding: 50px 0px;
+  position: absolute;
+  width: 100%;
+  z-index: 10000;
+}
+.navbar_container {
+  margin: 0 auto;
+  width: 90%;
+}
+.navbar_rails {
+  width: 100%;
+  margin: 0;
+  padding: 20px 0px 0px 0px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  li.link {
+    a {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      color: white;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      transition: 0.2s;
+      &:hover {
+        background-color: rgba(black, 0.7);
+      }
+      &.active {
+        background-color: #ee2046;
+      }
+    }
+  }
+}
