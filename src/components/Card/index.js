@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LanguageText } from "../../context";
 export const Card = (ctx) => {
-  const { img, title, subtitle, description, id } = ctx;
+  const { img, title, subtitle, model, id } = ctx;
   return (
     <>
       <div className={styles.card}>
@@ -17,10 +17,10 @@ export const Card = (ctx) => {
         </div>
         <div className="pr-2 pl-2">
           <br />
-          <h3>{title}</h3>
+          <h3 className="mb-1">{title}</h3>
           <h5 className="font-weight-light text-fade">{subtitle}</h5>
-          <p className="text-fade font-weight-lighter">{description}</p>
-          <br />
+          <h6 className="font-weight-light text-fade">{model}</h6>
+          {/*<p className="text-fade font-weight-lighter">{description}</p>*/}
           <Link to={`/products/${id}`}>
             <LanguageText t={"Подробнее"} />
           </Link>

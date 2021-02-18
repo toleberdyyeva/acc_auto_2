@@ -75,7 +75,7 @@ export const Product = () => {
                   <ReactMarkdown>{getDescription()}</ReactMarkdown>
                 </div>
               </Col>
-              <Col xs={12} md={3}>
+              <Col xs={12} md={4}>
                 <AccAccordion list={getSpecList()} />
               </Col>
             </Row>

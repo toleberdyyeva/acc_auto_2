@@ -18,6 +18,7 @@ export const Cards = () => {
         title: <LanguageText t={"title"} data={item} />,
         description: <LanguageText t={"description"} data={item} />,
         subtitle: <LanguageText t={"subtitle"} data={item} />,
+        model: item.product_model,
         img: item.image.url,
       }));
       console.log(new_data);
