@@ -10,10 +10,10 @@ export const ContactLinks = () => {
       path: `tel:${LanguageText({ t: "Номер 1" }).props.children}`,
       title: <LanguageText t={"Номер 1"} />,
     },
-    {
-      path: `tel:${LanguageText({ t: "Номер 2" }).props.children}`,
-      title: <LanguageText t={"Номер 2"} />,
-    },
+    // {
+    //   path: `tel:${LanguageText({ t: "Номер 2" }).props.children}`,
+    //   title: <LanguageText t={"Номер 2"} />,
+    // },
     {
       path: `tel:${LanguageText({ t: "Номер 3" }).props.children}`,
       title: <LanguageText t={"Номер 3"} />,

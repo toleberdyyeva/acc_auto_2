@@ -6,6 +6,7 @@ import { API } from "../services";
 import { LanguageText } from "../context";
 import { MediaLink } from "../context/media";
 import { Anime } from "./Anime";
+import { Title } from "./title";
 
 export const BusinessProcess = () => {
   const [services, setServices] = useState(null);
@@ -31,42 +32,45 @@ export const BusinessProcess = () => {
     }
   });
   return (
-    <Container
-      className="pr-3 pl-3"
-      style={{
-        padding: "90px 0px",
-        borderTop: "2px solid rgba(255,255,255,0.1)",
-      }}
-    >
-      <Row>
-        <Col xs={12} sm={6}>
-          <Anime>
-            <AccAccordion list={services} />
-          </Anime>
-          <br />
-          <br />
-        </Col>
-        <Col xs={12} sm={6}>
-          <Anime>
-            <div
-              style={{
-                borderRadius: "8px",
-                padding: "8px",
-                border: "2px solid rgba(255,255,255,0.1)",
-              }}
-            >
-              <ReactPlayer
-                width={"100%"}
-                height={300}
-                controls={false}
-                light={true}
-                style={{ borderRadius: "10px" }}
-                url={MediaLink({ name: "youtube", url: true, home: false })}
-              />
-            </div>
-          </Anime>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Title t={"Как мы работаем"} />
+      <Container
+        className="pr-3 pl-3"
+        style={{
+          padding: "90px 0px",
+          borderTop: "2px solid rgba(255,255,255,0.1)",
+        }}
+      >
+        <Row>
+          <Col xs={12} sm={6}>
+            <Anime>
+              <AccAccordion list={services} />
+            </Anime>
+            <br />
+            <br />
+          </Col>
+          <Col xs={12} sm={6}>
+            <Anime>
+              <div
+                style={{
+                  borderRadius: "8px",
+                  padding: "8px",
+                  border: "2px solid rgba(255,255,255,0.1)",
+                }}
+              >
+                <ReactPlayer
+                  width={"100%"}
+                  height={300}
+                  controls={false}
+                  light={true}
+                  style={{ borderRadius: "10px" }}
+                  url={MediaLink({ name: "youtube", url: true, home: false })}
+                />
+              </div>
+            </Anime>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };

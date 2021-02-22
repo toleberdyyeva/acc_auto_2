@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import PlusIcon from "../assets/icons/plus.png";
 import MinusIcon from "../assets/icons/minus.png";
+import ReactMarkdown from "react-markdown";
 import {
   Col,
   Row,
@@ -10,6 +11,7 @@ import {
   useAccordionToggle,
 } from "react-bootstrap";
 import { Icon } from "./Icon";
+import { LanguageText } from "../context";
 
 const ContextAwareToggle = ({ children, eventKey, callback }) => {
   const currentEventKey = useContext(AccordionContext);
@@ -61,6 +63,7 @@ const ContextAwareToggle = ({ children, eventKey, callback }) => {
 };
 
 export const AccAccordion = ({ list }) => {
+  console.log(list);
   return (
     <Accordion defaultActiveKey={1}>
       {list &&
@@ -73,9 +76,12 @@ export const AccAccordion = ({ list }) => {
             </Card.Header>
             <Accordion.Collapse eventKey={index + 1}>
               <Card.Body>
-                <p className="text-fade font-weight-light">
+                {/*{JSON.stringify(item.description)}*/}
+                {/*<ReactMarkdown>{item.description}</ReactMarkdown>*/}
+                <ReactMarkdown>
                   {item.description}
-                </p>
+                  {/*<LanguageText t={"description"} data={item} />*/}
+                </ReactMarkdown>
               </Card.Body>
             </Accordion.Collapse>
           </Card>

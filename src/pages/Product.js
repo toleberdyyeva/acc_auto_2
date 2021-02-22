@@ -1,7 +1,7 @@
 import { PageWallpaper } from "../components/PageWallapper";
 import { MediaLink } from "../context/media";
-import React, { useEffect, useState } from "react";
-import { LanguageText } from "../context";
+import React, { useEffect, useState, ReactDOM, useContext } from "react";
+import { ContentContext, LanguageText } from "../context";
 import { Title } from "../components/title";
 import { Cards } from "../components/Cards";
 import { Welcome } from "../components/welcome";
@@ -13,36 +13,42 @@ import { AccAccordion } from "../components/Accordion";
 import { ContactForm } from "../components/ContactForm";
 
 export const Product = () => {
+  const { userLanguage } = useContext(ContentContext);
+
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [specList, setSpecList] = useState(null);
   const [apply, setApply] = useState(false);
 
   const loadProduct = async () => {
     try {
       const { data } = await API.get(`/products/${id}`);
       setProduct(data);
-      console.log(data);
+      collectSpecList(data);
     } catch (e) {
       console.log(e);
       return e;
     }
   };
+  const collectSpecList = (data) => {
+    if (data) {
+      const spec_list = data.product_specs.map((item) => {
+        let k = (t) => (userLanguage === "ru" ? t : `${t}_${userLanguage}`);
+        return {
+          title: item[k("title")],
+          description: item[k("description")],
+        };
+      });
+      setSpecList(spec_list);
+    }
+  };
   useEffect(() => {
+    collectSpecList(product);
+    console.log(userLanguage);
     if (product === null) {
       loadProduct();
     }
-  });
-  const getSpecList = () => {
-    if (product === null) {
-      return [];
-    }
-    return product.product_specs.map((item) => {
-      return {
-        title: LanguageText({ t: "title", data: item }),
-        description: LanguageText({ t: "description", data: item }),
-      };
-    });
-  };
+  }, [userLanguage]);
   const getDescription = () => {
     const res = LanguageText({ t: "description", data: product });
     return res.props.children;
@@ -74,9 +80,11 @@ export const Product = () => {
                 <div style={{ paddingTop: "30px" }}>
                   <ReactMarkdown>{getDescription()}</ReactMarkdown>
                 </div>
+                <br />
+                <br />
               </Col>
               <Col xs={12} md={4}>
-                <AccAccordion list={getSpecList()} />
+                {specList && <AccAccordion list={specList} />}
               </Col>
             </Row>
             <Row>

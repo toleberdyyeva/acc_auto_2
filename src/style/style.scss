@@ -80,6 +80,10 @@ p {
     background-color: #d5e500 !important;
   }
 }
+.form-control select option {
+  background-color: black;
+  color: white;
+}
 //-------------------------------------- GLOBAL
 .image-wrapper {
   background-position: center center;
