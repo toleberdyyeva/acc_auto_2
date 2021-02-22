@@ -5,15 +5,21 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { Helmet } from "react-helmet";
 import { API } from "../services";
+import { LanguageText } from "../context";
 
 const PageLayout = (props) => {
   const { children, seo } = props;
+  console.log(seo);
+
+  const title = LanguageText({ t: "title", data: seo }).props.children;
+  const description = LanguageText({ t: "description", data: seo }).props
+    .children;
   return (
     <>
       {props.seo && (
         <Helmet>
-          <title>{seo.title}</title>
-          <meta name="description" content={seo.description} />
+          {title && <title>{title}</title>}
+          {description && <meta name="description" content={description} />}
         </Helmet>
       )}
       <Navbar />
@@ -24,6 +30,7 @@ const PageLayout = (props) => {
 };
 
 const PageContainer = (props) => {
+  console.log(props.seo);
   return (
     <PageLayout seo={props.seo}>
       <props.component {...props} />
@@ -32,21 +39,15 @@ const PageContainer = (props) => {
 };
 
 export const Routes = (props) => {
-  // const loadPages = async () => {
-  //   try {
-  //     const { data } = await API.get("/seo-pages");
-  //     return data;
-  //   } catch (e) {
-  //     console.log(e);
-  //     return {};
-  //   }
-  // };
-  // const collectPages = async () => {
-  //   const api_pages = await loadPages();
-  //   console.log(api_pages);
-  //   return [];
-  // };
-
+  const loadPages = async () => {
+    try {
+      const { data } = await API.get("/seo-pages");
+      return data;
+    } catch (e) {
+      console.log(e);
+      return [];
+    }
+  };
   const [pages, setPages] = useState([
     {
       path: "/",
@@ -77,8 +78,25 @@ export const Routes = (props) => {
       comp: Pages.NotFound,
     },
   ]);
-
-  useEffect(() => {});
+  const [seo_fetched, setSeo] = useState(false);
+  const collectPages = async () => {
+    if (seo_fetched) {
+      return;
+    }
+    const api_page = await loadPages();
+    const new_pages = pages.map((item) => {
+      const seo = api_page.find((p) => p.page_url === item.path);
+      return {
+        ...item,
+        seo,
+      };
+    });
+    await setSeo(true);
+    await setPages(new_pages);
+  };
+  useEffect(() => {
+    collectPages();
+  });
 
   return (
     <React.Fragment>
@@ -89,11 +107,7 @@ export const Routes = (props) => {
             path={page.path}
             exact
             render={(props) => (
-              <PageContainer
-                {...props}
-                component={page.comp}
-                seo={page.seo_data}
-              />
+              <PageContainer {...props} component={page.comp} seo={page.seo} />
             )}
           />
         ))}

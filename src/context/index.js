@@ -131,5 +131,5 @@ export const LanguageText = ({ t, data = null }) => {
     return dictionary[userLanguage][t] || t;
   };
 
-  return <>{refactor()}</>;
+  return <React.Fragment>{refactor()}</React.Fragment>;
 };
