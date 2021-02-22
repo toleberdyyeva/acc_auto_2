@@ -47,7 +47,7 @@ export const ServicesCollection = ({ all = false }) => {
                         <Icon
                           src={
                             process.env.REACT_APP_BACKEND_API_URL +
-                            item.icon.url
+                            (item && item.icon && item.icon.url)
                           }
                         />
                       </div>

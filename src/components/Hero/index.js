@@ -65,7 +65,8 @@ export const Hero = () => {
                 background={{
                   backgroundColor: "#6D9B98",
                   backgroundImage:
-                    process.env.REACT_APP_BACKEND_API_URL + item.image.url,
+                    process.env.REACT_APP_BACKEND_API_URL +
+                    (item && item.image && item.image.url),
                   backgroundAnimation: "zoom",
                 }}
                 children={

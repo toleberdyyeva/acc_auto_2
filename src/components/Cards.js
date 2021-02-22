@@ -19,7 +19,7 @@ export const Cards = () => {
         description: <LanguageText t={"description"} data={item} />,
         subtitle: <LanguageText t={"subtitle"} data={item} />,
         model: item.product_model,
-        img: item.image.url,
+        img: item.image && item.image.url,
       }));
       console.log(new_data);
       await setCards(new_data);

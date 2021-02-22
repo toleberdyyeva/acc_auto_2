@@ -104,7 +104,7 @@ export const Product = () => {
           {apply && <ContactForm product={product} />}
         </>
       )}
-      <Welcome />
+      {/*<Welcome />*/}
     </>
   );
 };
