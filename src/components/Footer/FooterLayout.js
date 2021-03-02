@@ -15,12 +15,12 @@ export const ContactLinks = () => {
     //   title: <LanguageText t={"Номер 2"} />,
     // },
     {
-      path: `tel:${LanguageText({ t: "Номер 3" }).props.children}`,
-      title: <LanguageText t={"Номер 3"} />,
-    },
-    {
       path: `mailto:${LanguageText({ t: "Почта" }).props.children}`,
       title: <LanguageText t={"Почта"} />,
+    },
+    {
+      path: `tel:${LanguageText({ t: "Адрес" }).props.children}`,
+      title: <LanguageText t={"Адрес"} />,
     },
   ];
   return (

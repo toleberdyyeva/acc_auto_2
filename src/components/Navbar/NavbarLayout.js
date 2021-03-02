@@ -17,7 +17,7 @@ export const NavbarLayout = (props) => {
             <Col xs={12} sm={9}>
               <ul className={styles.navbar_rails + " no-scrollbar"}>
                 <li style={{ marginRight: "40px" }}>
-                  <div style={{ width: "90px" }}>
+                  <div style={{ width: "120px" }}>
                     <Logo />
                   </div>
                 </li>

@@ -1,6 +1,7 @@
 import { PageWallpaper } from "../components/PageWallapper";
 import { MediaLink } from "../context/media";
 import React, { useEffect, useState, ReactDOM, useContext } from "react";
+import SliderImage from "react-zoom-slider";
 import { ContentContext, LanguageText } from "../context";
 import { Title } from "../components/title";
 import { Cards } from "../components/Cards";
@@ -55,6 +56,21 @@ export const Product = () => {
     // console.log(typeof res);
     // return res.toString();
   };
+
+  const images = () => {
+    let res = null;
+    if (product !== null) {
+      res = [];
+      res.push({
+        image: process.env.REACT_APP_BACKEND_API_URL + product.image.url,
+      });
+      product.slider.map((item) => {
+        res.push({ image: process.env.REACT_APP_BACKEND_API_URL + item.url });
+      });
+    }
+    return res;
+  };
+
   return (
     <>
       {product && (
@@ -70,13 +86,20 @@ export const Product = () => {
             </Row>
             <Row>
               <Col xs={12} md={8}>
-                <img
-                  src={
-                    process.env.REACT_APP_BACKEND_API_URL + product.image.url
-                  }
-                  alt=""
-                  width={"100%"}
-                />
+                {/*<img*/}
+                {/*  src={*/}
+                {/*    process.env.REACT_APP_BACKEND_API_URL + product.image.url*/}
+                {/*  }*/}
+                {/*  alt=""*/}
+                {/*  width={"100%"}*/}
+                {/*/>*/}
+                {images() && (
+                  <SliderImage
+                    data={images()}
+                    width={"100%"}
+                    showDescription={false}
+                  />
+                )}
                 <div style={{ paddingTop: "30px" }}>
                   <ReactMarkdown>{getDescription()}</ReactMarkdown>
                 </div>

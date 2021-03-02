@@ -48,7 +48,7 @@ export const Hero = () => {
           slidingDelay: 100,
           shouldAutoplay: true,
           shouldDisplayButtons: false,
-          autoplayDuration: 8000,
+          autoplayDuration: 15000,
           height: "85vh",
         }}
         inView
@@ -93,13 +93,22 @@ export const Hero = () => {
                               <LanguageText data={item} t="description" />
                             </h5>
                           </div>
-                          {item.product && (
+                          {item.redirect ? (
                             <Link
-                              to={`/products/${item.product.id}`}
+                              to={item.redirect}
                               className="btn btn-primary"
                             >
                               <LanguageText t="Подробнее" />
                             </Link>
+                          ) : (
+                            item.product && (
+                              <Link
+                                to={`/products/${item.product.id}`}
+                                className="btn btn-primary"
+                              >
+                                <LanguageText t="Подробнее" />
+                              </Link>
+                            )
                           )}
                           <br />
                           <br />
