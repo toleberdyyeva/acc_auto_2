@@ -4,6 +4,7 @@ import styles from "./Navbar.module.scss";
 import { Logo } from "../Logo";
 import { NavLink } from "react-router-dom";
 import { ContentContext, LanguageText } from "../../context";
+import { MediaLink } from "../../context/media";
 
 export const NavbarLayout = (props) => {
   const { userLanguageChange, userLanguage } = useContext(ContentContext);
@@ -14,7 +15,7 @@ export const NavbarLayout = (props) => {
       <header className={`${styles.navbar}`}>
         <div className={styles.navbar_container}>
           <Row className={"align-items-baseline"}>
-            <Col xs={12} sm={9}>
+            <Col xs={12} sm={8}>
               <ul className={styles.navbar_rails + " no-scrollbar"}>
                 <li style={{ marginRight: "40px" }}>
                   <div style={{ width: "120px" }}>
@@ -32,6 +33,29 @@ export const NavbarLayout = (props) => {
                     </NavLink>
                   </li>
                 ))}
+                <li className="d-sm-none">
+                  <a
+                    href={MediaLink({
+                      name: "whatsapp",
+                      url: true,
+                      home: false,
+                    })}
+                  >
+                    <img
+                      style={{
+                        width: "30px",
+                        margin: "-10px 10px 0px 0px",
+                      }}
+                      src={MediaLink({
+                        name: "whatsapp",
+                        url: false,
+                        home: true,
+                      })}
+                      alt=""
+                    />
+                    WhatsApp
+                  </a>
+                </li>
                 <li className="d-sm-none">
                   <a
                     href={`tel:${
@@ -61,7 +85,28 @@ export const NavbarLayout = (props) => {
                 </li>
               </ul>
             </Col>
-            <Col sm={2} className="text-right d-none d-sm-block">
+            <Col sm={3} className="text-right d-none d-sm-block">
+              <a
+                href={MediaLink({
+                  name: "whatsapp",
+                  url: true,
+                  home: false,
+                })}
+              >
+                <img
+                  style={{
+                    width: "20px",
+                  }}
+                  src={MediaLink({
+                    name: "whatsapp",
+                    url: false,
+                    home: true,
+                  })}
+                  alt=""
+                />
+                {/*WhatsApp*/}
+              </a>
+              &nbsp; &nbsp; &nbsp;
               <a href={`tel:${LanguageText({ t: "Номер 1" }).props.children}`}>
                 <LanguageText t={"Номер 1"} />
               </a>
