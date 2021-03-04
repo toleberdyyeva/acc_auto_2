@@ -15,9 +15,7 @@ export const ContactLinks = () => {
       title: <LanguageText t={"Почта"} />,
     },
     {
-      path: `${
-        MediaLink({ name: "2gis", url: true, home: false }).props.children
-      }`,
+      path: `${MediaLink({ name: "2gis", url: true, home: false })}`,
       title: <LanguageText t={"Адрес"} />,
     },
   ];
