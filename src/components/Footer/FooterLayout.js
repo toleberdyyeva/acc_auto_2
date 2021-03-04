@@ -10,16 +10,14 @@ export const ContactLinks = () => {
       path: `tel:${LanguageText({ t: "Номер 1" }).props.children}`,
       title: <LanguageText t={"Номер 1"} />,
     },
-    // {
-    //   path: `tel:${LanguageText({ t: "Номер 2" }).props.children}`,
-    //   title: <LanguageText t={"Номер 2"} />,
-    // },
     {
       path: `mailto:${LanguageText({ t: "Почта" }).props.children}`,
       title: <LanguageText t={"Почта"} />,
     },
     {
-      path: `tel:${LanguageText({ t: "Адрес" }).props.children}`,
+      path: `${
+        MediaLink({ name: "2gis", url: true, home: false }).props.children
+      }`,
       title: <LanguageText t={"Адрес"} />,
     },
   ];
